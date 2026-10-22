@@ -1,0 +1,42 @@
+
+=== Test 1 - normal traffic, good weather ===
+[1. Simple Reflex] -> A: R3: OTHERWISE take the shortest route
+[2. Model-Based Reflex] -> A: R3: otherwise shortest route | state: status=en_route, weather=clear, traffic={'A': 'normal', 'B': 'normal', 'C': 'normal'}
+[3. Goal-Based] -> A: Goal test passed: predicted 14.0 min <= 35 min (checked A=14.0)
+[4. Utility-Based] -> A: Highest utility -> A | A: U=-0.38 (14 min, Rs 28), B: U=-0.50 (18 min, Rs 44), C: U=-0.56 (16 min, Rs 96)
+[5. Learning] -> A: Best utility with learned delay factors (A x1.14, B x1.08, C x1.18) -> A
+[6. Hierarchical] -> A: Subgoal 2 chose A: route A (best utility among routes within the 32-min budget)
+      1. Accept order: ORD-101 accepted, deadline 35 min
+      2. Choose route: route A (best utility among routes within the 32-min budget)
+      3. Pick up food: collect order at restaurant (budget 5 min)
+      4. Deliver order: ride via A, predicted total 14.0 min
+      5. Confirm delivery: hand over and confirm (budget 2 min)
+[7. Contextual] -> A: Context-adjusted ETA (A=14.0, B=18.0, C=16.0 min) -> A | context used: none
+
+=== Test 2 - heavy traffic, multiple routes ===
+[1. Simple Reflex] -> C: R1: IF shortest route is HEAVY THEN take the lightest-traffic alternative
+[2. Model-Based Reflex] -> B: R1: state says A is heavy -> lightest alternative (used REMEMBERED traffic for B: live feed down) | state: status=en_route, weather=clear, traffic={'A': 'heavy', 'B': 'light', 'C': 'normal'}
+[3. Goal-Based] -> A: Goal test passed: predicted 24.5 min <= 30 min (checked A=24.5)
+[4. Utility-Based] -> B: Highest utility -> B | A: U=-0.67 (24 min, Rs 28), B: U=-0.42 (15 min, Rs 44), C: U=-0.60 (16 min, Rs 96)
+[5. Learning] -> B: Best utility with learned delay factors (A x1.36, B x1.05, C x1.18) -> B
+[6. Hierarchical] -> B: Subgoal 2 chose B: route B (best utility among routes within the 27-min budget)
+      1. Accept order: ORD-102 accepted, deadline 30 min
+      2. Choose route: route B (best utility among routes within the 27-min budget)
+      3. Pick up food: collect order at restaurant (budget 5 min)
+      4. Deliver order: ride via B, predicted total 15.2 min
+      5. Confirm delivery: hand over and confirm (budget 2 min)
+[7. Contextual] -> B: Context-adjusted ETA (A=24.5, B=15.2, C=26.0 min) -> B | context used: alert on C: accident
+
+=== Test 3 - heavy traffic, rain, urgent ===
+[1. Simple Reflex] -> B: R1: IF shortest route is HEAVY THEN take the lightest-traffic alternative
+[2. Model-Based Reflex] -> B: R1: state says A is heavy -> lightest alternative | state: status=en_route, weather=rain, traffic={'A': 'heavy', 'B': 'light', 'C': 'normal'}
+[3. Goal-Based] -> C: Goal test passed: predicted 18.2 min <= 20 min (checked A=28.9, C=18.2)
+[4. Utility-Based] -> B: Highest utility -> B | A: U=-5.31 (29 min, Rs 28), B: U=-0.60 (17 min, Rs 44), C: U=-0.79 (18 min, Rs 96)
+[5. Learning] -> C: Best utility with learned delay factors (A x1.29, B x1.31, C x1.02) -> C
+[6. Hierarchical] -> B: Subgoal 2 chose B: route B (best utility among routes within the 18-min budget)
+      1. Accept order: ORD-103 accepted, deadline 20 min (URGENT)
+      2. Choose route: route B (best utility among routes within the 18-min budget)
+      3. Pick up food: collect order at restaurant (budget 5 min)
+      4. Deliver order: ride via B, predicted total 17.3 min
+      5. Confirm delivery: hand over and confirm (budget 2 min)
+[7. Contextual] -> C: Context-adjusted ETA (A=31.1, B=20.4, C=19.4 min) -> C | context used: hot food: time weighs more; VIP: cost matters less, lateness penalised x2; rain + underpass on B: x1.3; rush hour: +10% on busy routes

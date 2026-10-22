@@ -1,0 +1,22 @@
+test,agent,route,minutes,on_time,cost_rs
+"Test 1 - normal traffic, good weather",1. Simple Reflex,A,14.0,True,28
+"Test 1 - normal traffic, good weather",2. Model-Based Reflex,A,14.0,True,28
+"Test 1 - normal traffic, good weather",3. Goal-Based,A,14.0,True,28
+"Test 1 - normal traffic, good weather",4. Utility-Based,A,14.0,True,28
+"Test 1 - normal traffic, good weather",5. Learning,A,14.0,True,28
+"Test 1 - normal traffic, good weather",6. Hierarchical,A,14.0,True,28
+"Test 1 - normal traffic, good weather",7. Contextual,A,14.0,True,28
+"Test 2 - heavy traffic, multiple routes",1. Simple Reflex,C,27.5,True,96
+"Test 2 - heavy traffic, multiple routes",2. Model-Based Reflex,B,15.2,True,44
+"Test 2 - heavy traffic, multiple routes",3. Goal-Based,A,29.8,True,28
+"Test 2 - heavy traffic, multiple routes",4. Utility-Based,B,15.2,True,44
+"Test 2 - heavy traffic, multiple routes",5. Learning,B,15.2,True,44
+"Test 2 - heavy traffic, multiple routes",6. Hierarchical,B,15.2,True,44
+"Test 2 - heavy traffic, multiple routes",7. Contextual,B,15.2,True,44
+"Test 3 - heavy traffic, rain, urgent",1. Simple Reflex,B,21.4,False,44
+"Test 3 - heavy traffic, rain, urgent",2. Model-Based Reflex,B,21.4,False,44
+"Test 3 - heavy traffic, rain, urgent",3. Goal-Based,C,18.8,True,96
+"Test 3 - heavy traffic, rain, urgent",4. Utility-Based,B,21.4,False,44
+"Test 3 - heavy traffic, rain, urgent",5. Learning,C,18.8,True,96
+"Test 3 - heavy traffic, rain, urgent",6. Hierarchical,B,21.4,False,44
+"Test 3 - heavy traffic, rain, urgent",7. Contextual,C,18.8,True,96

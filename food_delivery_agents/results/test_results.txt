@@ -1,0 +1,48 @@
+
+=== Test 1 - normal traffic, good weather ===
+weather=clear | urgent=no | deadline=35 min | traffic A=normal B=normal C=normal | afternoon, regular, standard food
+Agent                   Route  Time(min)  On time  Cost(Rs) 
+1. Simple Reflex        A      14.0       yes      28       
+2. Model-Based Reflex   A      14.0       yes      28       
+3. Goal-Based           A      14.0       yes      28       
+4. Utility-Based        A      14.0       yes      28       
+5. Learning             A      14.0       yes      28       
+6. Hierarchical         A      14.0       yes      28       
+7. Contextual           A      14.0       yes      28       
+
+=== Test 2 - heavy traffic, multiple routes ===
+weather=clear | urgent=no | deadline=30 min | traffic A=heavy B=light C=normal | afternoon, regular, standard food | alerts: C accident | live feed down: B
+Agent                   Route  Time(min)  On time  Cost(Rs) 
+1. Simple Reflex        C      27.5       yes      96       
+2. Model-Based Reflex   B      15.2       yes      44       
+3. Goal-Based           A      29.8       yes      28       
+4. Utility-Based        B      15.2       yes      44       
+5. Learning             B      15.2       yes      44       
+6. Hierarchical         B      15.2       yes      44       
+7. Contextual           B      15.2       yes      44       
+
+=== Test 3 - heavy traffic, rain, urgent ===
+weather=rain | urgent=yes | deadline=20 min | traffic A=heavy B=light C=normal | rush_hour, vip, hot food
+Agent                   Route  Time(min)  On time  Cost(Rs) 
+1. Simple Reflex        B      21.4       NO       44       
+2. Model-Based Reflex   B      21.4       NO       44       
+3. Goal-Based           C      18.8       yes      96       
+4. Utility-Based        B      21.4       NO       44       
+5. Learning             C      18.8       yes      96       
+6. Hierarchical         B      21.4       NO       44       
+7. Contextual           C      18.8       yes      96       
+
+=== Summary: route chosen in Test 1 / 2 / 3 and deliveries on time ===
+Agent                   T1   T2   T3   On time 
+1. Simple Reflex        A    C    B    2/3
+2. Model-Based Reflex   A    B    B    2/3
+3. Goal-Based           A    A    C    3/3
+4. Utility-Based        A    B    B    2/3
+5. Learning             A    B    C    3/3
+6. Hierarchical         A    B    B    2/3
+7. Contextual           A    B    C    3/3
+
+=== Learning agent: before vs after training on 600 past deliveries ===
+Test 1: before -> A 14.0 min (on time) | after -> A 14.0 min (on time)
+Test 2: before -> B 15.2 min (on time) | after -> B 15.2 min (on time)
+Test 3: before -> B 21.4 min (LATE) | after -> C 18.8 min (on time)

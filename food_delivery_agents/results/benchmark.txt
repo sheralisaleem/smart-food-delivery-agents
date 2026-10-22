@@ -1,0 +1,11 @@
+Benchmark on 1000 unseen random deliveries (307 urgent)
+Agent                     On time % (all)  On time % (urgent)  Avg min  Avg cost Rs
+5. Learning (untrained)   94.0             85.3                16.4     38         
+1. Simple Reflex          93.2             83.1                16.5     44         
+2. Model-Based Reflex     94.4             85.7                16.1     46         
+3. Goal-Based             88.0             86.6                18.9     33         
+4. Utility-Based          94.0             85.3                16.4     38         
+5. Learning               95.0             87.6                16.2     40         
+6. Hierarchical           94.5             87.0                16.3     38         
+7. Contextual             96.5             92.2                15.6     42         
+Oracle (hindsight)        96.8             92.2                15.3     53         
