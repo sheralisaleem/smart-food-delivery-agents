@@ -23,9 +23,6 @@
 
 [![Seeded benchmark](https://img.shields.io/badge/benchmark-1%2C000%20deliveries-00897B?style=flat-square)](#benchmark-snapshot)
 
-[Explore the dashboard](dashboard/smart_food_delivery_dashboard.html) ·
-[View the report](report/Assignment1_Agent_Based_Modeling_SherAliSaleem.pdf)
-
 </div>
 
 ---
